@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>fondos</title>
+	<meta charset="UTF-8">
+
+	<style type="text/css">
+
+		div#wrapper{
+			width: 600px;
+			height: 600px;
+			border:1px solid black;
+			border-radius: 15px;
+			padding: 15px;
+			background-color:white;
+			margin:auto
+		}
+
+		div#caja{
+
+			width: 600px;
+			height: 300px;
+			border:1px solid black;
+			background-color: white;
+		}
+
+		div#titulo{
+			padding:10px;
+			width: 600px;
+			border:1px solid black;
+			background-color: white;
+			box-sizing:border-box
+		}
+
+		div#circulo{
+
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			border:1px solid black;
+			background-color: white;
+			position: relative;
+			top:200px;
+			left: 250px;
+
+		}
+
+		select option[value='blue'] {background-color: blue;}
+		select option[value='yellow'] {background-color: yellow;}
+		select option[value='red'] {background-color: red;}
+		select option[value='green'] {background-color: green;}
+		select option[value='white'] {background-color: white;}
+
+		
+	</style>
+
+	<script type="text/javascript">
+		window.onload = function() {
+			//activar un listener sobre todo el documento
+			document.getElementById('color').addEventListener('change', cambiaColor);
+			//obtiene todos las etiquetas con name radio
+			var radios = document.getElementsByName('radio');
+			//varias formas de recorrer un array
+			//forma  1
+			//for  (i=0; i<radios.length; i++) {
+			//	radios[i].addEventListener('click',cambiaColor);
+			//}
+			for (i in radios) {
+				radios[i].addEventListener('click',cambiaColor);
+			}
+			//otro ejemplo de for  --> forEach
+			//radios.forEach(function(item,index)){
+			//	//objeto item  index indice
+			//	item.addEventListener('click', cambiaColor);
+			//})
+
+			//ejemplo con jquery
+			//$('input').on('click',cambiaColor)
+		}
+
+		function cambiaColor() {
+			//RECUPERAR COLOR
+			var color = document.getElementById('color').value;
+			//recuperar radio butoon
+			//querySelector 
+			var elemento = document.querySelector('input:checked').value;
+			/*	
+
+			//hay que revisar este bucle qu no me ha funcionado    (error)
+			// var radios=document.formulario.radio;
+			var radios=document.getElementsByName('radio');
+			for (i=0;i<radios.length; i++{
+				if (radios[i].checked) {
+					var elemento = radios[i].value;
+					break;
+				}
+			}*/
+			//cambiar el color
+			document.getElementById(elemento).style.backgroundColor=color;
+		}	
+		
+	</script>
+
+</head>
+<body>
+	<div id='wrapper'>
+
+	 	<div id='titulo'><h1>Esto es un título</h1></div><br>
+	 	<div id='caja'>
+			<div id='circulo'></div>
+	 	</div><br>
+	 	<form name="formulario">
+	 		<br><br>
+				<span>Fondo </span><input type="radio" name="radio" value="wrapper" checked>
+				<span>Cuadro del título</span><input type="radio" name="radio" value="titulo">
+				<span>Cuadrado </span><input type="radio" name="radio" value="caja">
+				<span>Círculo</span><input type="radio" name="radio" value="circulo">
+				<br><br>
+	 		<select id="color">
+				<option value='white' disabled selected="">Escoja un color</option>
+				<option value='yellow'>Amarillo</option>
+				<option value='red'>Rojo</option>	
+				<option value='green'>Verde</option>
+				<option value='blue'>Azul</option>
+			</select>
+		</form>
+
+	</div>
+	 
+</body>
+</html> 
